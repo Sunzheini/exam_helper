@@ -3,6 +3,7 @@ from tkinter import *
 
 from support.aopen_ai_controller import OpenAIGenerator
 from support.camera_controller import Camera
+from support.screenshot_controller import ScreenShotOCR
 
 
 class ExamHelperGui:
@@ -12,12 +13,14 @@ class ExamHelperGui:
         self.window.eval("tk::PlaceWindow . center")
         x = self.window.winfo_screenwidth() // 2
         y = int(self.window.winfo_screenheight() * 0.2)
-        self.window.geometry('300x300+' + str(x) + '+' + str(y))
+        self.window.geometry('320x400+' + str(x) + '+' + str(y))
         self.window.config(background='#2b2828')
 
         self.api_key = None
         self.generator = None
         self.camera = None
+
+        self.screenshot_taker = None
 
 # Key section -----------------------------------------------------------
         self.label1 = Label(
@@ -66,6 +69,23 @@ class ExamHelperGui:
         canvas2 = Canvas(self.window, width=300, height=1, bg='#2b2828', borderwidth=0)
         canvas2.pack(pady=10)
 
+# Screenshot section -------------------------------------------------------
+        self.label4 = Label(
+            self.window, text='..or just take a screenshot of central left screen',
+            width=40, height=1,
+            bg='#2b2828', borderwidth=0, relief="ridge", fg='white'
+        )
+        self.label4.pack()
+
+        self.button4 = Button(
+            self.window, text='ScrnShot', width=15, height=1,
+            command=self.take_screenshot
+        )
+        self.button4.pack(pady=10)
+
+        canvas4 = Canvas(self.window, width=300, height=1, bg='#2b2828', borderwidth=0)
+        canvas4.pack(pady=10)
+
 # Section result -----------------------------------------------------------
         self.label3 = Label(
             self.window, text='OpenAI response is displayed here:',
@@ -82,6 +102,7 @@ class ExamHelperGui:
     def store_key(self):
         new_input = self.entry1.get()
         self.api_key = new_input
+
         self.entry1.config(state=DISABLED)  # disable after submitting
 
     def open_camera(self):
@@ -102,6 +123,16 @@ class ExamHelperGui:
 
     def handle_camera_result(self, result):
         # Update the GUI with the result
+        self.print_text(result)
+
+    def take_screenshot(self):
+        if self.api_key is None:
+            self.print_text('Please enter the key first!')
+            return
+
+        self.generator = OpenAIGenerator(self.api_key)
+        self.screenshot_taker = ScreenShotOCR(self.generator)
+        result = self.screenshot_taker.screenshot_and_ocr()
         self.print_text(result)
 
     def print_text(self, text):
