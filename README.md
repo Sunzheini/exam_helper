@@ -9,4 +9,4 @@
    a) install it with pip install pyinstaller
    b) go to main project dir and run in the terminal: pyinstaller --onefile --noconsole for_compilation\all_into_one.py   (all_into_one.py is a file containing all the code from the other files but in one place in order to ease the compilation with pyinstaller)
     run the    
-   c) the .exe will be in the /dist direcotry, run it as an administrator
+   c) the .exe will be in the /dist directory, run it as an administrator
