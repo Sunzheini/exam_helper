@@ -3,7 +3,7 @@ from support.camera_controller import Camera
 
 # ------------------------------------------------------------------------------
 
-key = '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'
+key = None
 
 generator = OpenAIGenerator(key)
 camera = Camera(generator, key='c')
