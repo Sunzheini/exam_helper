@@ -1,10 +1,13 @@
-from support.aopen_ai_controller import OpenAIGenerator
-from support.camera_controller import Camera
+from support.the_gui import ExamHelperGui
 
-# ------------------------------------------------------------------------------
 
-key = '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'
+class MainController:
+    def __init__(self):
+        self.new_gui = ExamHelperGui()
 
-generator = OpenAIGenerator(key)
-camera = Camera(generator, key='c')
-camera.continuous_read()
+    def run(self):
+        self.new_gui.run()
+
+
+connection = MainController()
+connection.run()

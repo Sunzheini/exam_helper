@@ -75,9 +75,12 @@ class Camera:
             if key == ord(self.key):
                 self.convert_to_gray(frame)
                 self.result = self.perform_ocr(frame)
+
                 # ouput
                 # self.print_result(self.result)
-                self.generator.generate_text(self.result)
+                holder = self.generator.generate_text(self.result)
+                yield holder
+
                 # display the frame in a window
                 self.create_window()
                 self.display_in_window(frame)
