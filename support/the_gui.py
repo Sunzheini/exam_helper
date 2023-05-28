@@ -13,7 +13,7 @@ class ExamHelperGui:
         self.window.eval("tk::PlaceWindow . center")
         x = self.window.winfo_screenwidth() // 2
         y = int(self.window.winfo_screenheight() * 0.2)
-        self.window.geometry('320x400+' + str(x) + '+' + str(y))
+        self.window.geometry('400x400+' + str(x) + '+' + str(y))
         self.window.config(background='#2b2828')
 
         self.api_key = None
@@ -49,7 +49,7 @@ class ExamHelperGui:
         )
         self.button1.pack(pady=10)
 
-        canvas = Canvas(self.window, width=300, height=1, bg='#2b2828', borderwidth=0)
+        canvas = Canvas(self.window, width=400, height=1, bg='#2b2828', borderwidth=0)
         canvas.pack()
 
 # Photo section -----------------------------------------------------------
@@ -66,7 +66,7 @@ class ExamHelperGui:
         )
         self.button2.pack(pady=10)
 
-        canvas2 = Canvas(self.window, width=300, height=1, bg='#2b2828', borderwidth=0)
+        canvas2 = Canvas(self.window, width=400, height=1, bg='#2b2828', borderwidth=0)
         canvas2.pack(pady=10)
 
 # Screenshot section -------------------------------------------------------
@@ -83,7 +83,7 @@ class ExamHelperGui:
         )
         self.button4.pack(pady=10)
 
-        canvas4 = Canvas(self.window, width=300, height=1, bg='#2b2828', borderwidth=0)
+        canvas4 = Canvas(self.window, width=400, height=1, bg='#2b2828', borderwidth=0)
         canvas4.pack(pady=10)
 
 # Section result -----------------------------------------------------------
@@ -94,7 +94,7 @@ class ExamHelperGui:
         )
         self.label3.pack()
 
-        self.text_widget = Text(self.window, height=6, width=33)
+        self.text_widget = Text(self.window, height=7, width=48)
         self.text_widget.pack()
 
 # ------------------------------------------------------------------
